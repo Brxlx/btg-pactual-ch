@@ -35,16 +35,16 @@ export class ObjectID {
     return new ObjectId().toHexString();
   }
 
-  constructor(value?: string) {
-    if (value && value.length !== 24) throw new InvalidIdError();
-    this.value = value ?? this.generateObjectId();
-  }
-
   public equals(id: ObjectID): boolean {
     return id.toValue() === this.value;
   }
 
   public isValid(this: ObjectID): boolean {
     return ObjectId.isValid(this.toValue());
+  }
+
+  constructor(value?: string) {
+    if (value && value.length !== 24) throw new InvalidIdError();
+    this.value = value ?? this.generateObjectId();
   }
 }
