@@ -7,7 +7,8 @@ export class PrismaOrdersMapper {
   static toDomain(raw: PrismaOrder): Order {
     return Order.create(
       {
-        customerId: new ObjectID(raw.customerId),
+        orderId: Number(raw.orderId),
+        customerId: Number(raw.customerId),
         total: raw.total,
         items: raw.items as unknown as OrderItem[],
         createdAt: raw.createdAt,
@@ -20,6 +21,7 @@ export class PrismaOrdersMapper {
   static toPrisma(order: Order): Prisma.OrderUncheckedCreateInput {
     return {
       id: order.id.toString(),
+      orderId: order.orderId,
       customerId: order.customerId,
       total: order.total,
       items: order.items as unknown as Prisma.InputJsonValue,

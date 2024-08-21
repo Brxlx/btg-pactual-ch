@@ -5,7 +5,6 @@ import { OrderItem } from '@/domain/enterprise/entities/value-objects/order-item
 interface CreateOrderUseCaseRequest {
   orderId: number;
   customerId: number;
-  total: number;
   items: OrderItem[];
 }
 
@@ -17,13 +16,12 @@ export class CreateOrderUseCase {
   async execute({
     orderId,
     customerId,
-    total,
     items,
   }: CreateOrderUseCaseRequest): Promise<CreateOrderUseCaseResponse> {
+    console.log(items.map((item) => item));
     const order = Order.create({
       orderId,
       customerId,
-      total,
       items,
     });
 

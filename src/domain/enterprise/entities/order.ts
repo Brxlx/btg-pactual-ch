@@ -32,6 +32,10 @@ export class Order extends Entity<OrderProps> {
     );
   }
 
+  set total(value: number) {
+    this.props.total = value;
+  }
+
   get createdAt() {
     return this.props.createdAt;
   }
@@ -40,10 +44,14 @@ export class Order extends Entity<OrderProps> {
     return this.props.updatedAt;
   }
 
-  static create(props: Optional<OrderProps, 'createdAt'>, id?: ObjectID) {
+  static create(
+    props: Optional<OrderProps, 'total' | 'createdAt'>,
+    id?: ObjectID,
+  ) {
     return new Order(
       {
         ...props,
+        total: props.total ?? 0,
         createdAt: props.createdAt ?? new Date(),
       },
       id,
