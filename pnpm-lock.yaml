@@ -23,6 +23,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^10.0.0
         version: 10.4.1(@nestjs/common@10.4.1(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)
+      '@prisma/client':
+        specifier: 5.18.0
+        version: 5.18.0(prisma@5.18.0)
       bson:
         specifier: ^6.8.0
         version: 6.8.0
@@ -35,6 +38,9 @@ importers:
       zod:
         specifier: ^3.23.8
         version: 3.23.8
+      zod-validation-error:
+        specifier: ^3.3.1
+        version: 3.3.1(zod@3.23.8)
     devDependencies:
       '@nestjs/cli':
         specifier: ^10.0.0
@@ -78,6 +84,9 @@ importers:
       prettier:
         specifier: ^3.0.0
         version: 3.3.3
+      prisma:
+        specifier: ^5.18.0
+        version: 5.18.0
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
@@ -460,6 +469,30 @@ packages:
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@prisma/client@5.18.0':
+    resolution: {integrity: sha512-BWivkLh+af1kqC89zCJYkHsRcyWsM8/JHpsDMM76DjP3ZdEquJhXa4IeX+HkWPnwJ5FanxEJFZZDTWiDs/Kvyw==}
+    engines: {node: '>=16.13'}
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+
+  '@prisma/debug@5.18.0':
+    resolution: {integrity: sha512-f+ZvpTLidSo3LMJxQPVgAxdAjzv5OpzAo/eF8qZqbwvgi2F5cTOI9XCpdRzJYA0iGfajjwjOKKrVq64vkxEfUw==}
+
+  '@prisma/engines-version@5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169':
+    resolution: {integrity: sha512-a/+LpJj8vYU3nmtkg+N3X51ddbt35yYrRe8wqHTJtYQt7l1f8kjIBcCs6sHJvodW/EK5XGvboOiwm47fmNrbgg==}
+
+  '@prisma/engines@5.18.0':
+    resolution: {integrity: sha512-ofmpGLeJ2q2P0wa/XaEgTnX/IsLnvSp/gZts0zjgLNdBhfuj2lowOOPmDcfKljLQUXMvAek3lw5T01kHmCG8rg==}
+
+  '@prisma/fetch-engine@5.18.0':
+    resolution: {integrity: sha512-I/3u0x2n31rGaAuBRx2YK4eB7R/1zCuayo2DGwSpGyrJWsZesrV7QVw7ND0/Suxeo/vLkJ5OwuBqHoCxvTHpOg==}
+
+  '@prisma/get-platform@5.18.0':
+    resolution: {integrity: sha512-Tk+m7+uhqcKDgnMnFN0lRiH7Ewea0OEsZZs9pqXa7i3+7svS3FSCqDBCaM9x5fmhhkufiG0BtunJVDka+46DlA==}
 
   '@rollup/pluginutils@5.1.0':
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
@@ -2189,6 +2222,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prisma@5.18.0:
+    resolution: {integrity: sha512-+TrSIxZsh64OPOmaSgVPH7ALL9dfU0jceYaMJXsNrTkFHO7/3RANi5K2ZiPB1De9+KDxCWn7jvRq8y8pvk+o9g==}
+    engines: {node: '>=16.13'}
+    hasBin: true
+
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -2845,6 +2883,12 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod-validation-error@3.3.1:
+    resolution: {integrity: sha512-uFzCZz7FQis256dqw4AhPQgD6f3pzNca/Zh62RNELavlumQB3nDIUFbF5JQfFLcMbO1s02Q7Xg/gpcOBlEnYZA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      zod: ^3.18.0
+
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
@@ -3194,6 +3238,31 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.1.1': {}
+
+  '@prisma/client@5.18.0(prisma@5.18.0)':
+    optionalDependencies:
+      prisma: 5.18.0
+
+  '@prisma/debug@5.18.0': {}
+
+  '@prisma/engines-version@5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169': {}
+
+  '@prisma/engines@5.18.0':
+    dependencies:
+      '@prisma/debug': 5.18.0
+      '@prisma/engines-version': 5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169
+      '@prisma/fetch-engine': 5.18.0
+      '@prisma/get-platform': 5.18.0
+
+  '@prisma/fetch-engine@5.18.0':
+    dependencies:
+      '@prisma/debug': 5.18.0
+      '@prisma/engines-version': 5.18.0-25.4c784e32044a8a016d99474bd02a3b6123742169
+      '@prisma/get-platform': 5.18.0
+
+  '@prisma/get-platform@5.18.0':
+    dependencies:
+      '@prisma/debug': 5.18.0
 
   '@rollup/pluginutils@5.1.0(rollup@4.20.0)':
     dependencies:
@@ -4966,6 +5035,10 @@ snapshots:
 
   prettier@3.3.3: {}
 
+  prisma@5.18.0:
+    dependencies:
+      '@prisma/engines': 5.18.0
+
   process-nextick-args@2.0.1: {}
 
   proxy-addr@2.0.7:
@@ -5630,5 +5703,9 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod-validation-error@3.3.1(zod@3.23.8):
+    dependencies:
+      zod: 3.23.8
 
   zod@3.23.8: {}

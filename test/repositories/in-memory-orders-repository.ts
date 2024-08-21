@@ -11,7 +11,7 @@ export class InMemoryOrdersRepository extends OrdersRepository {
 
     return order;
   }
-  async findByCustomerId(id: string): Promise<Order[]> {
+  async findByCustomerId(id: number): Promise<Order[]> {
     return this.items.filter((item) => item.customerId === id);
   }
 

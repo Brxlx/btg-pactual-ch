@@ -2,7 +2,7 @@ import { OrdersRepository } from '@/domain/application/repositories/orders-repos
 import { Order } from '@/domain/enterprise/entities/order';
 
 interface GetOrdersByCustomerUseCaseRequest {
-  customerId: string;
+  customerId: number;
 }
 
 type GetOrdersByCustomerUseCaseResponse = { orders: Order[] };

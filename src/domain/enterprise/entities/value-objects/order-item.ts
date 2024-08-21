@@ -1,15 +1,14 @@
-import { ObjectID } from '@/core/entities/object-id';
 import { ValueObject } from '@/core/entities/value-object';
 
 export interface OrderItemProps {
-  product: ObjectID;
+  product: string;
   quantity: number;
   price: number;
 }
 
 export class OrderItem extends ValueObject<OrderItemProps> {
   get product() {
-    return this.props.product.toString();
+    return this.props.product;
   }
 
   get quantity() {

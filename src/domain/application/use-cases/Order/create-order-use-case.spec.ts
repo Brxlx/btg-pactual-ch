@@ -14,7 +14,7 @@ suite('[Order]', () => {
       sut = new CreateOrderUseCase(inMemoryOrdersRepository);
     });
     it('should be able to create a new order', async () => {
-      const newOrder = await makeOrder();
+      const newOrder = await makeOrder({ orderId: 1 });
       const result = await sut.execute(newOrder);
 
       console.log(JSON.stringify(result, null, 2));

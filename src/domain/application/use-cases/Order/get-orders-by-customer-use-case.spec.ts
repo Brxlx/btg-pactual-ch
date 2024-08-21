@@ -14,12 +14,19 @@ suite('[Order]', () => {
       sut = new GetOrdersByCustomerUseCase(inMemoryOrdersRepository);
     });
     it('should be able to get orders from a customer', async () => {
-      const newOrder1 = await makeOrder({}, 2);
+      const newOrder1 = await makeOrder(
+        {
+          orderId: 1,
+          customerId: 1,
+        },
+        2,
+      );
       const newOrder2 = await makeOrder({
-        customerId: new ObjectID(newOrder1.customerId),
+        orderId: 2,
+        customerId: newOrder1.customerId,
       });
-      console.log('order 1', newOrder1.items);
-      console.log('order 2', newOrder2.items);
+      console.log('order 1', newOrder1, newOrder1.items);
+      console.log('order 2', newOrder2, newOrder2.items);
       console.log('soma total dos itens: ', newOrder1.total + newOrder2.total);
       await inMemoryOrdersRepository.create(newOrder1);
       await inMemoryOrdersRepository.create(newOrder2);

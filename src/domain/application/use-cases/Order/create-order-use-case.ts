@@ -1,10 +1,10 @@
-import { ObjectID } from '@/core/entities/object-id';
 import { OrdersRepository } from '@/domain/application/repositories/orders-repository';
 import { Order } from '@/domain/enterprise/entities/order';
 import { OrderItem } from '@/domain/enterprise/entities/value-objects/order-item';
 
 interface CreateOrderUseCaseRequest {
-  customerId: string;
+  orderId: number;
+  customerId: number;
   total: number;
   items: OrderItem[];
 }
@@ -15,12 +15,14 @@ export class CreateOrderUseCase {
   constructor(private readonly ordersRepository: OrdersRepository) {}
 
   async execute({
+    orderId,
     customerId,
     total,
     items,
   }: CreateOrderUseCaseRequest): Promise<CreateOrderUseCaseResponse> {
     const order = Order.create({
-      customerId: new ObjectID(customerId),
+      orderId,
+      customerId,
       total,
       items,
     });

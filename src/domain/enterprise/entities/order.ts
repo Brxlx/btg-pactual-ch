@@ -4,7 +4,8 @@ import { Optional } from '@/core/types/optional';
 import { OrderItem } from './value-objects/order-item';
 
 export interface OrderProps {
-  customerId: ObjectID;
+  orderId: number;
+  customerId: number;
   total: number;
   items: OrderItem[];
   createdAt: Date;
@@ -12,8 +13,12 @@ export interface OrderProps {
 }
 
 export class Order extends Entity<OrderProps> {
+  get orderId() {
+    return this.props.orderId;
+  }
+
   get customerId() {
-    return this.props.customerId.toString();
+    return this.props.customerId;
   }
 
   get items() {
@@ -25,6 +30,14 @@ export class Order extends Entity<OrderProps> {
       (acc, item) => acc + item.price * item.quantity,
       0,
     );
+  }
+
+  get createdAt() {
+    return this.props.createdAt;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
   }
 
   static create(props: Optional<OrderProps, 'createdAt'>, id?: ObjectID) {

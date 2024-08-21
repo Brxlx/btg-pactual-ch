@@ -12,7 +12,9 @@ export async function makeOrder(
   const items = generateItems(itemsQtd);
   return Order.create(
     {
-      customerId: new ObjectID(),
+      orderId: override.orderId ?? faker.number.int({ min: 1, max: 10000 }),
+      customerId:
+        override.customerId ?? faker.number.int({ min: 1, max: 10000 }),
       total: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
       items,
       ...override,
@@ -26,7 +28,7 @@ function generateItems(qtd: number) {
   for (let i = 0; i < qtd; i++) {
     items.push(
       OrderItem.create({
-        product: new ObjectID(),
+        product: faker.commerce.product(),
         quantity: faker.number.int({ min: 1, max: 3 }),
         price: faker.number.float({ fractionDigits: 2, min: 1, max: 150 }),
       }),
