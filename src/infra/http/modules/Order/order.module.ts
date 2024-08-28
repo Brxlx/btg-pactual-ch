@@ -5,17 +5,19 @@ import { GetOrdersByCustomerIdController } from './get-orders-by-customer-id.con
 import { OrdersRepository } from '@/domain/application/repositories/orders-repository';
 import { CreateOrderController } from './create-order.controller';
 import { CreateOrderService } from './create-order.service';
+import { QueueModule } from '@/infra/Queue/queue.module';
+import { ProducerQueue } from '@/domain/application/gateways/queue/producer-queue';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, QueueModule],
   controllers: [CreateOrderController, GetOrdersByCustomerIdController],
   providers: [
     {
       provide: CreateOrderService,
-      useFactory: (ordersRepository: OrdersRepository) => {
-        return new CreateOrderService(ordersRepository);
+      useFactory: (producerQueue: ProducerQueue) => {
+        return new CreateOrderService(producerQueue);
       },
-      inject: [OrdersRepository],
+      inject: [ProducerQueue],
     },
     {
       provide: GetOrdersByCustomerIdService,
@@ -25,6 +27,6 @@ import { CreateOrderService } from './create-order.service';
       inject: [OrdersRepository],
     },
   ],
-  exports: [GetOrdersByCustomerIdService],
+  exports: [GetOrdersByCustomerIdService, CreateOrderService],
 })
 export class OrderModule {}

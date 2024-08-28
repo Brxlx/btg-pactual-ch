@@ -1,7 +1,9 @@
+@name=get_order_by_id
 GET http://localhost:3000/orders/1
 
 
 ###
+@name=create_order
 POST http://localhost:3000/orders
 Content-Type: application/json
 
@@ -11,8 +13,13 @@ Content-Type: application/json
   "items": [
     {
       "product": "Boné",
-        "quantity": 2,
-        "price": 10.90
+      "quantity": 2,
+      "price": 10.90
+    },
+    {
+      "product": "Lápis",
+      "quantity": 1,
+      "price": 3
     }
   ]
 }

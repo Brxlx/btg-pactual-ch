@@ -7,15 +7,16 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('App');
 
-  const service = app.get(EnvService);
-  const port = service.get('APP_PORT');
+  const envService = app.get(EnvService);
+  const port = envService.get('APP_PORT');
 
   await app
     .listen(port, () => {
       logger.log('App up and running!');
     })
     .catch((err) => {
-      logger.log('Error starting app.. \n', err.message);
+      logger.error('Error starting app.. \n', err.message);
+      process.exit(1);
     });
 }
 bootstrap();

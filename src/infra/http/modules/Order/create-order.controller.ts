@@ -1,9 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UsePipes } from '@nestjs/common';
 import { CreateOrderService } from './create-order.service';
-import { CreateOrderSchema } from './types/order-schema';
+import { CreateOrderSchema, createOrderSchema } from './types/order-schema';
 import { OrderItem } from '@/domain/enterprise/entities/value-objects/order-item';
+import { ZodValidationPipe } from '../../pipes/zod-validation.pipe';
 
 @Controller('/orders')
+@UsePipes(new ZodValidationPipe(createOrderSchema))
 export class CreateOrderController {
   constructor(private readonly createOrderService: CreateOrderService) {}
 

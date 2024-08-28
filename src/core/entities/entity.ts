@@ -8,6 +8,10 @@ export abstract class Entity<Props> {
     return this._id;
   }
 
+  get stringifiedId() {
+    return this._id.toString();
+  }
+
   protected constructor(props: Props, id?: ObjectID) {
     this.props = props;
     this._id = id ?? new ObjectID(id);

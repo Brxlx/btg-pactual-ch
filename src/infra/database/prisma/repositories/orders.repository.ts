@@ -26,7 +26,15 @@ export class PrismaOrdersRepository implements OrdersRepository {
   async create(order: Order): Promise<void> {
     const prismaOrder = PrismaOrdersMapper.toPrisma(order);
     await this.prisma.order.create({
-      data: prismaOrder,
+      data: {
+        id: prismaOrder.id,
+        customerId: prismaOrder.customerId,
+        orderId: prismaOrder.orderId,
+        total: prismaOrder.total,
+        items: prismaOrder.items,
+        createdAt: prismaOrder.createdAt,
+        updatedAt: prismaOrder.updatedAt,
+      },
     });
   }
 }
