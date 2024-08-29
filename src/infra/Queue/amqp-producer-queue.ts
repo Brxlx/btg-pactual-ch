@@ -30,7 +30,7 @@ export class AmqpProducerQueue
     try {
       if (!this.producer) return;
 
-      await this.producer.assertQueue(topic);
+      await this.producer.assertQueue(topic, { durable: true });
 
       this.producer.sendToQueue(topic, message);
     } catch (err) {

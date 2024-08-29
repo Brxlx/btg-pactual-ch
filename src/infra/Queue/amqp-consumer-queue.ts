@@ -10,9 +10,8 @@ import {} from '@nestjs/microservices';
 import { ConsumerQueue } from '@/domain/application/gateways/queue/consumer-queue';
 import { OrdersRepository } from '@/domain/application/repositories/orders-repository';
 import { Channel, Connection, ConsumeMessage, connect } from 'amqplib';
-import { Order } from '@/domain/enterprise/entities/order';
+import { Order, OrderProps } from '@/domain/enterprise/entities/order';
 import { ObjectID } from '@/core/entities/object-id';
-import { OrderItem } from '@/domain/enterprise/entities/value-objects/order-item';
 
 @Injectable()
 export class AmqpConsumerQueue
@@ -59,16 +58,8 @@ export class AmqpConsumerQueue
     try {
       const deserialized = JSON.parse(msg.content.toString()) as {
         id: string;
-        customerId: number;
-        orderId: number;
-        total: number;
-        items: OrderItem[];
-        createdAt: Date;
-        updatedAt: Date | null;
-      };
-      console.log('desserializei ', new ObjectID(deserialized.id).toString());
+      } & OrderProps;
 
-      // console.log(typeof id, id, id.toString());
       const newOrder = Order.create(
         {
           customerId: deserialized.customerId,

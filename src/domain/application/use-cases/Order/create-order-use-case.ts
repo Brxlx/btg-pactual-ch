@@ -29,9 +29,9 @@ export class CreateOrderUseCase {
       Buffer.from(
         JSON.stringify({
           id: order.id.toString(),
-          orderId,
-          customerId,
-          items,
+          orderId: order.orderId,
+          customerId: order.customerId,
+          items: order.items,
           total: order.total,
           createdAt: order.createdAt,
           updatedAt: order.updatedAt,

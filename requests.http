@@ -1,5 +1,5 @@
 @name=get_order_by_id
-GET http://localhost:3000/orders/1
+GET http://localhost:3000/orders/customer/1
 
 
 ###

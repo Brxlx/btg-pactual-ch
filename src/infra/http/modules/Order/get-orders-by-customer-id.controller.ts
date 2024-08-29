@@ -8,7 +8,7 @@ export class GetOrdersByCustomerIdController {
     private readonly getOrdersByCustomerIdService: GetOrdersByCustomerIdService,
   ) {}
 
-  @Get(':customerId')
+  @Get('/customer/:customerId')
   async handle(@Param('customerId') customerId: number) {
     const { orders } = await this.getOrdersByCustomerIdService.execute({
       customerId,
