@@ -32,10 +32,6 @@ export class Order extends Entity<OrderProps> {
     );
   }
 
-  set total(value: number) {
-    this.props.total = value;
-  }
-
   get createdAt() {
     return this.props.createdAt;
   }
@@ -51,7 +47,12 @@ export class Order extends Entity<OrderProps> {
     return new Order(
       {
         ...props,
-        total: props.total ?? 0,
+        total:
+          props.total ??
+          props.items.reduce(
+            (acc, item) => acc + item.price * item.quantity,
+            0,
+          ),
         createdAt: props.createdAt ?? new Date(),
       },
       id,

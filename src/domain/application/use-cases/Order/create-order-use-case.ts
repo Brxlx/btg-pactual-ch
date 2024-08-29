@@ -23,7 +23,7 @@ export class CreateOrderUseCase {
       customerId,
       items,
     });
-    // await this.ordersRepository.create(order);
+
     await this.producerQueue.produce(
       'orders',
       Buffer.from(
