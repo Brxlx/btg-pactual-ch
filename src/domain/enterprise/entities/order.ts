@@ -26,9 +26,11 @@ export class Order extends Entity<OrderProps> {
   }
 
   get total() {
-    return this.props.items.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0,
+    return this.normalizePrice(
+      this.props.items.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0,
+      ),
     );
   }
 
@@ -40,6 +42,10 @@ export class Order extends Entity<OrderProps> {
     return this.props.updatedAt;
   }
 
+  private normalizePrice(price: number) {
+    return parseFloat(price.toFixed(2));
+  }
+
   static create(
     props: Optional<OrderProps, 'total' | 'createdAt'>,
     id?: ObjectID,
@@ -49,9 +55,10 @@ export class Order extends Entity<OrderProps> {
         ...props,
         total:
           props.total ??
-          props.items.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0,
+          parseFloat(
+            props.items
+              .reduce((acc, item) => acc + item.price * item.quantity, 0)
+              .toFixed(2),
           ),
         createdAt: props.createdAt ?? new Date(),
       },

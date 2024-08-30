@@ -12,14 +12,14 @@ Content-Type: application/json
   "customerId": 1,
   "items": [
     {
-      "product": "Boné",
+      "product": "Caderno",
       "quantity": 2,
-      "price": 10.90
+      "price": 40.90
     },
     {
       "product": "Lápis",
       "quantity": 1,
-      "price": 3
+      "price": 3.99
     }
   ]
 }
