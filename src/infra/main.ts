@@ -30,7 +30,10 @@ async function bootstrap() {
       logger.log('App up and running!');
     })
     .catch((err) => {
-      logger.error('Error starting app.. \n', err.message);
+      logger.error('Error starting app...');
+      err.message && logger.error(err.message);
+      err.cause && logger.error(err.cause);
+      err.stack && logger.error(err.stack);
       process.exit(1);
     });
 }
