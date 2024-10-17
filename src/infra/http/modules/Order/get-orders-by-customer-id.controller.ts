@@ -1,19 +1,12 @@
 import { Controller, Get, HttpCode, Param } from '@nestjs/common';
 import { GetOrdersByCustomerIdService } from './get-orders-by-customer-id.controller.service';
 import { OrderPresenter } from '../../presenters/order-presenter';
-import {
-  ApiBadRequestResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetOrdersByCustomerIdResponse } from './types/order-schema';
 
 @Controller('/orders')
 export class GetOrdersByCustomerIdController {
-  constructor(
-    private readonly getOrdersByCustomerIdService: GetOrdersByCustomerIdService,
-  ) {}
+  constructor(private readonly getOrdersByCustomerIdService: GetOrdersByCustomerIdService) {}
 
   @Get('/customer/:customerId')
   @HttpCode(200)

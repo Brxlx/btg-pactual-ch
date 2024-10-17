@@ -1,17 +1,11 @@
 import { CoreEnv } from '@/core/env/core-env';
 import { ProducerQueue } from '@/domain/application/gateways/queue/producer-queue';
-import {
-  Injectable,
-  OnApplicationBootstrap,
-  OnModuleDestroy,
-} from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common';
 import { Env } from '../env/env.schema';
 import { Channel, Connection, connect } from 'amqplib';
 
 @Injectable()
-export class AmqpProducerQueue
-  implements ProducerQueue, OnApplicationBootstrap, OnModuleDestroy
-{
+export class AmqpProducerQueue implements ProducerQueue, OnApplicationBootstrap, OnModuleDestroy {
   private connection: Connection | undefined = undefined;
   private producer: Channel | undefined = undefined;
 

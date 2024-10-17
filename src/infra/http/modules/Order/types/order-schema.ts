@@ -1,6 +1,7 @@
 import { createZodDto } from '@anatine/zod-nestjs';
-import { z } from 'zod';
 import { extendApi, extendZodWithOpenApi } from '@anatine/zod-openapi';
+
+import { z } from 'zod';
 import { type ObjectId } from 'bson';
 
 // Exemplo de payload
@@ -50,9 +51,7 @@ export const getOrdersByCustomerIdResponse = extendApi(
   z.object({
     orders: z.array(
       z.object({
-        _id: z
-          .custom<ObjectId>()
-          .openapi({ example: '66d2101a03e78f699fd76978' }),
+        _id: z.custom<ObjectId>().openapi({ example: '66d2101a03e78f699fd76978' }),
         orderId: z.number().nonnegative().openapi({ example: 1001 }),
         customerId: z.number().nonnegative().openapi({ example: 1235 }),
         total: z.number().nonnegative().openapi({ example: '40.99' }),
@@ -70,9 +69,5 @@ export const getOrdersByCustomerIdResponse = extendApi(
 
 export type CreateOrderSchema = z.infer<typeof createOrderSchema>;
 
-export class CreateOrdersByCustomerIdDTO extends createZodDto(
-  createOrderSchema,
-) {}
-export class GetOrdersByCustomerIdResponse extends createZodDto(
-  getOrdersByCustomerIdResponse,
-) {}
+export class CreateOrdersByCustomerIdDTO extends createZodDto(createOrderSchema) {}
+export class GetOrdersByCustomerIdResponse extends createZodDto(getOrdersByCustomerIdResponse) {}

@@ -6,10 +6,7 @@ import { PrismaOrdersRepository } from './prisma/repositories/orders.repository'
 
 @Module({
   imports: [EnvModule],
-  providers: [
-    PrismaService,
-    { provide: OrdersRepository, useClass: PrismaOrdersRepository },
-  ],
+  providers: [PrismaService, { provide: OrdersRepository, useClass: PrismaOrdersRepository }],
   exports: [PrismaService, OrdersRepository],
 })
 export class DatabaseModule {}

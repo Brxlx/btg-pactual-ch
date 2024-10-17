@@ -28,9 +28,7 @@ export class CreateOrderController {
   @ApiCreatedResponse({ status: 201 })
   @ApiBadRequestResponse({ description: 'Validation error: ' })
   @ApiInternalServerErrorResponse({ description: 'Unhandled unknown error' })
-  async handle(
-    @Body(new ZodValidationPipe(createOrderSchema)) body: CreateOrderSchema,
-  ) {
+  async handle(@Body(new ZodValidationPipe(createOrderSchema)) body: CreateOrderSchema) {
     const { orderId, customerId, items } = body;
     await this.createOrderService.execute({
       orderId,

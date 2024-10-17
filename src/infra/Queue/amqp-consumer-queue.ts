@@ -1,12 +1,6 @@
 import { CoreEnv } from '@/core/env/core-env';
-import {
-  Injectable,
-  Logger,
-  OnApplicationBootstrap,
-  OnModuleDestroy,
-} from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common';
 import { Env } from '../env/env.schema';
-import {} from '@nestjs/microservices';
 import { ConsumerQueue } from '@/domain/application/gateways/queue/consumer-queue';
 import { OrdersRepository } from '@/domain/application/repositories/orders-repository';
 import { Channel, Connection, ConsumeMessage, connect } from 'amqplib';
@@ -14,9 +8,7 @@ import { Order, OrderProps } from '@/domain/enterprise/entities/order';
 import { ObjectID } from '@/core/entities/object-id';
 
 @Injectable()
-export class AmqpConsumerQueue
-  implements ConsumerQueue, OnApplicationBootstrap, OnModuleDestroy
-{
+export class AmqpConsumerQueue implements ConsumerQueue, OnApplicationBootstrap, OnModuleDestroy {
   private logger: Logger;
   private connection: Connection | undefined = undefined;
   private consumer: Channel | undefined = undefined;
